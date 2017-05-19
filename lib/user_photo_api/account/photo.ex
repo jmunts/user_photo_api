@@ -2,11 +2,12 @@ defmodule UserPhotoAPI.Account.Photo do
   use Ecto.Schema
   import Ecto.Changeset
   alias UserPhotoAPI.Account.Photo
+  alias UserPhotoAPI.Account.User
 
 
   schema "photos" do
     field :url, :string
-    field :user_id, :id
+    belongs_to :user, User
 
     timestamps()
   end
@@ -14,7 +15,7 @@ defmodule UserPhotoAPI.Account.Photo do
   @doc false
   def changeset(%Photo{} = photo, attrs) do
     photo
-    |> cast(attrs, [:url])
-    |> validate_required([:url])
+    |> cast(attrs, [:url, :user_id])
+    |> validate_required([:url, :user_id])
   end
 end

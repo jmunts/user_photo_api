@@ -9,7 +9,8 @@ defmodule UserPhotoAPI.Web.PhotoView do
 
   def render("photo.json", %{photo: photo}) do
     %{id: photo.id,
-      url: photo.url}
+      url: photo.url,
+      user_id: photo.user_id}
   end
 
 end
