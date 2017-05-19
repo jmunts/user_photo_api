@@ -4,9 +4,12 @@ defmodule UserPhotoAPI.Account do
   alias UserPhotoAPI.Repo
   alias UserPhotoAPI.Account.User
   alias UserPhotoAPI.Account.Photo
+  alias UserPhotoAPI.Account.PhotoLike
 
   def get_photo!(id) do
-    Repo.get!(Photo, id)
+    Photo
+    |> Repo.get!(id)
+    |> Repo.preload(:photo_likes)
   end
 
   def create_photo(attrs \\ %{}) do
@@ -19,12 +22,16 @@ defmodule UserPhotoAPI.Account do
     Repo.get!(User, id)
   end
 
-
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert
   end
 
+  def like_photo(attrs \\ %{}) do
+    %PhotoLike{}
+    |> PhotoLike.changeset(attrs)
+    |> Repo.insert
+  end
 
 end

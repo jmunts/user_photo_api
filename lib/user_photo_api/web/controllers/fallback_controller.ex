@@ -13,5 +13,4 @@ defmodule UserPhotoAPI.Web.FallbackController do
     |> render(UserPhotoAPI.Web.ErrorView, "404.json")
   end
 
-
 end
