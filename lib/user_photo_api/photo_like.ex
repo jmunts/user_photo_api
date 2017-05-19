@@ -1,9 +1,9 @@
-defmodule UserPhotoAPI.Account.PhotoLike do
+defmodule UserPhotoAPI.PhotoLike do
   use Ecto.Schema
   import Ecto.Changeset
-  alias UserPhotoAPI.Account.PhotoLike
-  alias UserPhotoAPI.Account.User
-  alias UserPhotoAPI.Account.Photo
+  alias UserPhotoAPI.PhotoLike
+  alias UserPhotoAPI.User
+  alias UserPhotoAPI.Photo
 
   schema "photo_likes" do
     belongs_to :user, User
