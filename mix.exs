@@ -18,7 +18,7 @@ defmodule UserPhotoAPI.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {UserPhotoAPI.Application, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :comeonin]]
   end
 
   # Specifies which paths to compile per environment.
@@ -34,7 +34,9 @@ defmodule UserPhotoAPI.Mixfile do
      {:phoenix_ecto, "~> 3.2"},
      {:postgrex, ">= 0.0.0"},
      {:gettext, "~> 0.11"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:comeonin, "~> 3.0"},
+     {:secure_random, "~> 0.5"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

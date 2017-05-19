@@ -9,7 +9,8 @@ defmodule UserPhotoAPI.Web.UserView do
 
   def render("user.json", %{user: user}) do
     %{id: user.id,
-      email: user.email}
+      email: user.email,
+      session_token: user.session_token}
   end
 
 end
