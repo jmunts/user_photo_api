@@ -12,5 +12,7 @@ defmodule UserPhotoAPI.Web.Router do
       post "/like", PhotoController, :like
     end
     resources "/users", UserController, only: [:show, :create]
+
+    post "/auth/login", AuthController, :login
   end
 end
