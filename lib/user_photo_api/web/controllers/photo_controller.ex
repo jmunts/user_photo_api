@@ -13,7 +13,7 @@ defmodule UserPhotoAPI.Web.PhotoController do
 
   def create(conn, %{"photo" => photo_params}) do
     with {:ok, %Photo{} = photo} <- Photo.create_photo(photo_params) do
-      photo = Photo.get_photo!(photo.id) # to get preloaded %Photo{}
+      photo = Photo.get_photo!(photo.id)
       conn
       |> put_status(:created)
       |> put_resp_header("location", photo_path(conn, :show, photo))

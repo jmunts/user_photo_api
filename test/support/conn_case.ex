@@ -21,6 +21,10 @@ defmodule UserPhotoAPI.Web.ConnCase do
       use Phoenix.ConnTest
       import UserPhotoAPI.Web.Router.Helpers
 
+      alias UserPhotoAPI.Repo
+      import Ecto
+      import Ecto.Changeset
+      
       # The default endpoint for testing
       @endpoint UserPhotoAPI.Web.Endpoint
     end
