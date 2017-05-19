@@ -4,6 +4,8 @@ defmodule UserPhotoAPI.Web.PhotoController do
   alias UserPhotoAPI.Account
   alias UserPhotoAPI.Account.Photo
 
+  action_fallback UserPhotoAPI.Web.FallbackController
+  
   def show(conn, %{"id" => id}) do
     photo = Account.get_photo!(id)
     render(conn, "show.json", photo: photo)

@@ -9,5 +9,6 @@ defmodule UserPhotoAPI.Web.Router do
     pipe_through :api
 
     resources "/photos", PhotoController, only: [:show, :create]
+    resources "/users", UserController, only: [:show, :create]
   end
 end
