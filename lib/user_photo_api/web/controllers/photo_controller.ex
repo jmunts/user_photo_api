@@ -1,6 +1,8 @@
 defmodule UserPhotoAPI.Web.PhotoController do
   use UserPhotoAPI.Web, :controller
 
+  plug Guardian.Plug.EnsureAuthenticated, handler: __MODULE__
+
   alias UserPhotoAPI.Photo
   alias UserPhotoAPI.PhotoLike
 
@@ -29,7 +31,12 @@ defmodule UserPhotoAPI.Web.PhotoController do
       |> put_resp_header("location", photo_path(conn, :show, photo))
       |> render("show.json", photo: photo)
     end
+  end
 
+  def unauthenticated(conn, _params) do
+    conn
+    |> put_status(401)
+    |> render(UserPhotoAPI.Web.AuthView, "error.json", message: "Authenticated required")
   end
 
 end

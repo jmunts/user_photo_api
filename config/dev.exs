@@ -42,3 +42,12 @@ config :user_photo_api, UserPhotoAPI.Repo,
   database: "user_photo_api_dev",
   hostname: "localhost",
   pool_size: 10
+
+# Guardian
+config :guardian, Guardian,
+  verify_module: Guardian.JWT,
+  issuer: "UserPhotoAPI",
+  ttl: { 30, :days},
+  allow_drift: 2000,
+  secret_key: System.get_env("GUARDIAN_SECRET_KEY"),
+  serializer: UserPhotoAPI.GuardianSerializer
