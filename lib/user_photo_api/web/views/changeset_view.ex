@@ -9,5 +9,4 @@ defmodule UserPhotoAPI.Web.ChangesetView do
     %{errors: translate_errors(changeset)}
   end
 
-
 end

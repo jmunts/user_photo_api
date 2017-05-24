@@ -19,6 +19,7 @@ defmodule UserPhotoAPI.User do
     user
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
+    |> unique_constraint(:email)
     |> hash_password
     |> add_session_token
   end
