@@ -45,15 +45,15 @@ defmodule UserPhotoAPI.Web.AuthController do
         Guardian.revoke!(jwt, claims)
         conn
         |> put_status(:ok)
-        |> render "logout.json"
+        |> render("logout.json")
       {:error, :no_session} ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render "no_session.json"
+        |> render("no_session.json")
       _ ->
         conn
         |> put_status(:unprocessable_entity)
-        |> render "error.json"
+        |> render("error.json")
     end
   end
 
