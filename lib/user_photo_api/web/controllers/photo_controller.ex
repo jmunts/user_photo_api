@@ -14,6 +14,10 @@ defmodule UserPhotoAPI.Web.PhotoController do
   end
 
   def create(conn, %{"photo" => photo_params}) do
+    current_user = Guardian.Plug.current_resource(conn)
+    photo_params = photo_params |>
+      Map.put_new("user_id", current_user.id)
+    
     with {:ok, %Photo{} = photo} <- Photo.create_photo(photo_params) do
       photo = Photo.get_photo!(photo.id)
       conn
@@ -23,8 +27,9 @@ defmodule UserPhotoAPI.Web.PhotoController do
     end
   end
 
-  def like(conn, %{"photo_id" => photo_id, "user_id" => user_id}) do
-    with {:ok, %PhotoLike{}} <- Photo.like_photo(%{photo_id: photo_id, user_id: user_id}) do
+  def like(conn, %{"photo_id" => photo_id}) do
+    current_user = Guardian.Plug.current_resource(conn)    
+    with {:ok, %PhotoLike{}} <- Photo.like_photo(%{photo_id: photo_id, user_id: current_user.id}) do
       photo = Photo.get_photo!(photo_id)
       conn
       |> put_status(:created)
