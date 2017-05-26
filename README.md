@@ -28,7 +28,10 @@ In order to access the photo endpoints, you have to add a key of `Authorization`
 `Authorization: Bearer :jwt`
 
 ### Post photo
+NOTE: You can use apps such as [Postman](https://www.getpostman.com/) for you to be able to attach a file in the POST request.
 `POST localhost:4000/api/photos/:photo_id`
+Required request parameters/body:
+Key: `photo[image]` Value: Attach file using [Postman](https://www.getpostman.com/)
 ```
 {
   "data": {
