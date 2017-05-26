@@ -22,12 +22,12 @@ defmodule UserPhotoAPI.Web.AuthController do
       user ->
         conn
         |> put_status(:unauthorized)
-        |> render("error.json", user_params)
+        |> render("error.json", %{message: "Invalid password"})
       true ->
         dummy_checkpw()
         conn
         |> put_status(:unauthorized)
-        |> render("error.json", user_params)
+        |> render("error.json", %{message: "Invalid credentials"})
     end
   end
 
