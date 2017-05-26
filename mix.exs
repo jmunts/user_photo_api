@@ -18,7 +18,7 @@ defmodule UserPhotoAPI.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {UserPhotoAPI.Application, []},
-     extra_applications: [:logger, :comeonin]]
+     extra_applications: [:logger, :comeonin, :arc_ecto]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,8 +37,10 @@ defmodule UserPhotoAPI.Mixfile do
      {:cowboy, "~> 1.0"},
      {:comeonin, "~> 3.0"},
      {:secure_random, "~> 0.5"},
-     {:guardian, "~> 0.14"}]
-  end
+     {:guardian, "~> 0.14"},
+     {:arc, "~> 0.8.0"},
+     {:arc_ecto, "~> 0.7.0"}]
+end
 
   # Aliases are shortcuts or tasks specific to the current project.
   # For example, to create, migrate and run the seeds file at once:

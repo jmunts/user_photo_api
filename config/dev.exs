@@ -49,5 +49,11 @@ config :guardian, Guardian,
   issuer: "UserPhotoAPI",
   ttl: { 30, :days},
   allow_drift: 2000,
-  secret_key: System.get_env("GUARDIAN_SECRET_KEY"),
+  secret_key: "00OiTiP6P7A0ZwStjWdUPJehCUS2gS0nEHyNkKjmslMMyD5IaPtgcHd9omj7k3RD",
   serializer: UserPhotoAPI.GuardianSerializer
+
+
+# Arc config
+config :arc,
+  storage: Arc.Storage.Local
+
