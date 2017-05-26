@@ -10,14 +10,70 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
 
-## Routes
+## Endpoints
+### Login
+`POST localhost:4000/api/auth/login?user[email]=:email&user[password]=:password`
 ```
-POST localhost:4000/api/auth/login?user[email]=:email&user[password]=:password
-POST localhost:4000/api/users?user[email]=:email&user[password]=:password
+{
+  "data": {
+    "user_id": 1,
+    "jwt": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJVc2VyOjciLCJleHAiOjE0OTgzNzg4MjIsImlhdCI6MTQ5NTc4NjgyMiwiaXNzIjoiVXNlclBob3RvQVBJIiwianRpIjoiZDFlYWYwNmUtMzIxNS00ODE4LWEwZTAtOWViMzViOGQ0ODZkIiwicGVtIjp7fSwic3ViIjoiVXNlcjo3IiwidHlwIjoiYWNjZXNzIn0.pWPkuiBjYIrNCOOXZwAL5jRYPddrtxLxGkwoef40AwwWuqNFCjReJdDMh4m2d_dbTPIeqAZCcfqwomAYPMTPCw"  # => keep this
+  }
+}
+```
 
-POST localhost:4000/api/photos?photo[url]=:url&photo[user_id]=:user_id
-GET  localhost:4000/api/photos/:photo_id
-POST localhost:4000/api/photos/:photo_id/like?user_id=:user_id
+
+### Photo
+In order to access the photo endpoints, you have to add a key of `Authorization` and value of `Bearer :jwt` in the header where `:jwt`'s value is the return from `api/auth/login` above.
+`Authorization: Bearer :jwt`
+
+### Post photo
+`POST localhost:4000/api/photos/:photo_id`
+```
+{
+  "data": {
+    "user_id": 1,
+    "url": "/uploads/15784685_10205641123106592_1591799532_o.jpg?v=63663005495",
+    "likes_user_ids": [
+      1
+    ],
+    "likes_count": 1,
+    "id": 1
+  }
+}
+```
+NOTE: You can view the photo by visiting the url by prepending the localhost `localhost:4000/uploads/15784685_10205641123106592_1591799532_o.jpg?v=63663005495`
+
+### View photo
+`POST localhost:4000/api/photos/1`
+```
+{
+  "data": {
+    "user_id": 1,
+    "url": "/uploads/15784685_10205641123106592_1591799532_o.jpg?v=63663005495",
+    "likes_user_ids": [
+      1
+    ],
+    "likes_count": 1,
+    "id": 1
+  }
+}
+```
+
+### Like a photo
+POST localhost:4000/api/photos/:photo_id/like
+```
+{
+  "data": {
+    "user_id": 1,
+    "url": "/uploads/15784685_10205641123106592_1591799532_o.jpg?v=63663005495",
+    "likes_user_ids": [
+      1
+    ],
+    "likes_count": 1,
+    "id": 1
+  }
+}
 ```
 
 ## Learn more
